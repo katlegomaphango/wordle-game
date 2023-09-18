@@ -1,5 +1,5 @@
 import { AccuracyEnum } from "../../utilities/accuracy.utils";
-import { StyledLetterButton } from "./index.style";
+import { StyledLetterButton } from "./Letter.Style";
 
 interface ILetterProps {
     position: number,
