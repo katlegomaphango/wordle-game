@@ -1,4 +1,4 @@
-
+import { useEffect, useState } from "react"
 
 interface IWordProps {
     isWordEvaluated: boolean,
@@ -7,7 +7,18 @@ interface IWordProps {
 
 const Word = (props: IWordProps) => {
     const { isWordEvaluated, guessWordValue } = props
-    
+
+    const [guessValue, setGuessValue] = useState('')
+    const [isEvaluated, setIsEvaluated] = useState(false)
+
+    useEffect(() => {
+        setGuessValue(guessWordValue)
+    }, [guessWordValue])
+
+    useEffect(() => {
+        setIsEvaluated(isWordEvaluated)
+    }, [isWordEvaluated])
+
     return (
         <div>Word</div>
     )
