@@ -1,6 +1,5 @@
 import styled from "styled-components"
-import { accuracyColorMap } from ".."
-import { AccuracyEnum } from "../../utilities/accuracy.utils"
+import { AccuracyEnum, accuracyColorMap } from "../../utilities/accuracy.utils"
 
 
 export const StyledLetterButton = styled.button< { accuracy: AccuracyEnum} > `
