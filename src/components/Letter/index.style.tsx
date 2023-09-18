@@ -1,7 +1,9 @@
 import styled from "styled-components"
+import { accuracyColorMap } from ".."
+import { AccuracyEnum } from "../../utilities/accuracy.utils"
 
 
-export const StyledLetterButton = styled.button `
+export const StyledLetterButton = styled.button< { accuracy: AccuracyEnum} > `
     margin: 2px;
     width: 50px;
     height: 50px;
@@ -9,5 +11,5 @@ export const StyledLetterButton = styled.button `
     color: white;
     font-size: 30px;
     font-weight: bold;
-    background: green;
+    background: ${props => accuracyColorMap.get(props.accuracy)};
 `

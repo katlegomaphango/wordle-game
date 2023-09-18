@@ -1,4 +1,5 @@
 import { AccuracyEnum } from "../../utilities/accuracy.utils";
+import { StyledLetterButton } from "./index.style";
 
 interface ILetterProps {
     position: number,
@@ -11,9 +12,9 @@ const Letter = (props: ILetterProps) => {
 
     return (
         <>
-            <button style={{ width: '50px', height: '50px' }}>
+            <StyledLetterButton accuracy={accuracy}>
                 {value}
-            </button>
+            </StyledLetterButton>
         </>
     )
 }
