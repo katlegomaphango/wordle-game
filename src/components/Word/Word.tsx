@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Letter } from ".."
 import { AccuracyEnum } from "../../utilities/accuracy.utils"
 import { evaluatedWordScore } from "../../utilities/evaluation.utils"
+import { retrieveAnswer } from "../../utilities/answerRetriever"
 
 
 
@@ -32,8 +33,7 @@ const Word = (props: IWordProps) => {
 
     //original
     useEffect(() => {
-        //const results = evaluatedWordScore( guessValue, retrieveAnswer().toUpperCase() )
-        const results = evaluatedWordScore( guessValue, "REACT" )
+        const results = evaluatedWordScore( guessValue, retrieveAnswer().toUpperCase() )
 
         setEvaluatedResults(results)
         setGuessValue(guessWordValue)
