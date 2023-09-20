@@ -1,14 +1,16 @@
-import { useState } from "react"
-import { StyledWordEntry } from "./WordEntry.Style"
+import { useRef, useState } from "react"
+import { StyledEvaluateButton, StyledWordEntry, StyledWordEntryContainer } from "./WordEntry.Style"
 
 
 interface IWordEntryProps {
-    onGuessEntered(guess: string): void
+    onGuessEntered(guess: string): void,
+    onGuessComplete(): void
 }
 
-const WordEntry = ({ onGuessEntered } : IWordEntryProps) => {
+const WordEntry = ({ onGuessEntered, onGuessComplete } : IWordEntryProps) => {
 
     const [value, setValue] = useState('')
+    const wordEntryRef = useRef<HTMLInputElement>(null);
 
     const getValidWordleString = (rawString: string) => {
 
@@ -24,15 +26,41 @@ const WordEntry = ({ onGuessEntered } : IWordEntryProps) => {
         setValue(validString)
     }
 
+    const handleEnterPressed = (e:React.KeyboardEvent<HTMLInputElement>) => {
+        if(value.length < 5) return
+        if (e.key === "Enter") {
+            handleGuessComplete()
+        }
+    }
+
+    const handleGuessComplete = () => {
+        // clear and set focus to word entry
+        setValue('')
+        wordEntryRef?.current?.focus()
+        onGuessComplete()
+    }
+
     return (
         <>
-            <StyledWordEntry
-                autoFocus
-                placeholder='Enter your guess...' 
-                value={value}
-                maxLength={5}
-                onChange={(e) => handleLetterEntry(e)}
-            />
+            <StyledWordEntryContainer>
+                <StyledWordEntry
+                    autoFocus
+                    placeholder='Enter your guess...' 
+                    value={value}
+                    maxLength={5}
+                    onChange={(e) => handleLetterEntry(e)}
+                    ref = {wordEntryRef}
+                    onKeyPress = {e => handleEnterPressed(e)}
+                />
+
+                {
+                    (value.length !== 5) ? '' :
+                        <StyledEvaluateButton onClick={handleGuessComplete} >
+                            Guess
+                        </StyledEvaluateButton>
+                }
+            </StyledWordEntryContainer>
+            
         </>
     )
 }
