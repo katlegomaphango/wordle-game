@@ -13,3 +13,19 @@ export const StyledWordEntry = styled.input`
     }
 
 `
+
+export const StyledEvaluateButton = styled.button`
+    width: 72p  
+    height: 40px;
+    background: #CC4433;
+    color: white;
+    border-radius: 5px;
+    margin: 15px;
+    position: relative;
+    top: 10px
+`
+
+export const StyledWordEntryContainer = styled.div`
+    display:block;
+    flex: row;
+`
