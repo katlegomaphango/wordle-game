@@ -1,3 +1,4 @@
+import { useState } from "react"
 
 
 interface IWordEntryProps {
@@ -5,6 +6,17 @@ interface IWordEntryProps {
 }
 
 const WordEntry = ({ onGuessEntered } : IWordEntryProps) => {
+
+    const [value, setValue] = useState('')
+
+    const getValidWordleString = (rawString: string) => {
+
+        const upperCaseString = rawString.toUpperCase()
+        
+        const validWordleString = rawString.replace(/[^a-z]/gi, '');
+        return validWordleString?.toUpperCase()
+    }
+
     return (
         <div>WordEntry</div>
     )
