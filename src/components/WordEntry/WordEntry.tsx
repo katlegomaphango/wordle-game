@@ -12,9 +12,15 @@ const WordEntry = ({ onGuessEntered } : IWordEntryProps) => {
     const getValidWordleString = (rawString: string) => {
 
         const upperCaseString = rawString.toUpperCase()
-        
-        const validWordleString = rawString.replace(/[^a-z]/gi, '');
+
+        const validWordleString = rawString.replace(/[^a-z]/gi, '')
         return validWordleString?.toUpperCase()
+    }
+
+    const handleLetterEntry = (e:any) => {
+        const validString:string = getValidWordleString(e.target.value)
+        onGuessEntered(validString)
+        setValue(validString)
     }
 
     return (
